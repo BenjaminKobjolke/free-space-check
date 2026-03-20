@@ -1,0 +1,38 @@
+[project]
+name = "free-space-check"
+version = "1.0.0"
+description = "Find the most recently modified files on a drive to identify what's consuming disk space"
+requires-python = ">=3.11,<3.14"
+dependencies = []
+
+[project.scripts]
+free-space-check = "free_space_check.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/free_space_check"]
+
+[dependency-groups]
+dev = [
+    "ruff",
+    "mypy",
+    "pytest",
+]
+
+[tool.ruff]
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
